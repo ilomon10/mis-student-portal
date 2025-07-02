@@ -1,40 +1,25 @@
 export const idValidity = (grade: string): number => {
-  // Define the mapping for grades to numerical values
+  // The numbers define how many more year they will graduate
   const gradeMapping: { [key: string]: number } = {
-    NSY: 1,
-    KD1: 1,
+    NSY: 3,
+    KD1: 2,
     KD2: 1,
-    G1: 2,
-    G2: 3,
+    G1: 6,
+    G2: 5,
     G3: 4,
-    G4: 5,
-    G5: 6,
-    G6: 7,
-    G7: 8,
-    G8: 9,
-    G9: 10,
-    G10: 11,
-    G11: 12,
-    G12: 13,
+    G4: 3,
+    G5: 2,
+    G6: 1,
+    G7: 3,
+    G8: 2,
+    G9: 1,
+    G10: 3,
+    G11: 2,
+    G12: 1,
   };
 
-  // Determine the graduation grade based on the current grade
-  let graduationGrade: number = 0;
   if (grade in gradeMapping) {
-    const currentGradeValue = gradeMapping[grade];
-    if (currentGradeValue <= 1) {
-      graduationGrade = 1; // Valid until K2
-    } else if (currentGradeValue <= 7) {
-      graduationGrade = 7; // Valid until Grade 6
-    } else if (currentGradeValue <= 10) {
-      graduationGrade = 10; // Valid until Grade 9
-    } else if (currentGradeValue <= 13) {
-      graduationGrade = 13; // Valid until Grade 12
-    }
-
-    // Calculate the number of years until graduation
-    return graduationGrade - currentGradeValue;
+    return gradeMapping[grade];
   }
-
   return -1;
 };

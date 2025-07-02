@@ -62,7 +62,7 @@ export const IDCardPreview = React.forwardRef<
                 }}
               >
                 June 20,{" "}
-                {Number(moment().get("year")) + idValidity(record.grade)}
+                {Number(record.school_year.split("/")[0]) + idValidity(record.grade)}
               </Text>
             </Box>
             <Box pos={"absolute"} left={left} top={343}>
