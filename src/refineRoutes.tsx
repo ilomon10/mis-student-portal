@@ -14,6 +14,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
+import { LogbookList } from "./pages/logbook/LogbookList";
 import { authProvider } from "./provider/authentication";
 import { dataProvider } from "./provider/datasource";
 import { UserCreate, UserEdit, UserList, UserShow } from "./pages/users";
@@ -29,6 +30,7 @@ import {
   IconList,
   IconSettings,
   IconUsersGroup,
+  IconBook2,
 } from "@tabler/icons-react";
 import { ThemedLayoutV2 } from "./components/layout";
 import { DashboardPage } from "./pages/dashboard";
@@ -59,6 +61,15 @@ export const RefineRoutes = () => {
             meta: {
               canDelete: true,
               icon: <IconList />,
+            },
+          },
+          {
+            name: "logbook",
+            list: "/logbook",
+            meta: {
+              canDelete: true,
+              icon: <IconBook2 />,
+              label: "Logbook",
             },
           },
           {
@@ -126,6 +137,9 @@ export const RefineRoutes = () => {
             </Route>
             <Route path="/students">
               <Route index element={<StudentList />} />
+            </Route>
+            <Route path="/logbook">
+              <Route index element={<LogbookList />} />
             </Route>
             <Route path="/student">
               <Route path="create" element={<StudentCreate />} />

@@ -13,10 +13,14 @@ import {
   ListProps,
 } from "@refinedev/mantine";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
-import React from "react";
+import React, { ReactNode } from "react";
 import { useListContext } from "./ListProvider";
 
-export const ListHeader: React.FC<ListProps> = () => {
+interface ListHeaderProps extends ListProps {
+  extra?: ReactNode;
+}
+
+export const ListHeader: React.FC<ListHeaderProps> = ({ extra }) => {
   const {
     canCreate,
     createButtonProps: createButtonPropsFromProps,
@@ -60,11 +64,7 @@ export const ListHeader: React.FC<ListProps> = () => {
   ) : null;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+  typeof breadcrumb !== "undefined" ? breadcrumb : <Breadcrumb />;
 
   const headerButtons = headerButtonsFromProps
     ? typeof headerButtonsFromProps === "function"
@@ -99,7 +99,8 @@ export const ListHeader: React.FC<ListProps> = () => {
             </Title>
           )}
         </Stack>
-        <Group spacing="xs" {...headerButtonProps} >
+        <Group spacing="xs" {...headerButtonProps}>
+          {extra}
           {headerButtons}
         </Group>
       </Group>

@@ -29,6 +29,8 @@ export const dataProvider = (): Omit<
     if (mode === "server") {
       query.$skip = (current - 1) * pageSize;
       query.$limit = pageSize;
+    } else {
+      query.$limit = 5000; // ✅ load 5000 when pagination is off
     }
 
     const generatedSort = generateSort(sorters);
